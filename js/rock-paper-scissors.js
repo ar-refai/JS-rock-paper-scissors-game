@@ -1,11 +1,9 @@
-let score = {};
-// score tracker
-if (!localStorage.getItem('score'))
-    localStorage.setItem('score', "{ wins: 0, losses: 0 , ties: 0 }");
-
-console.log(score);
-score = JSON.parse(localStorage.getItem('score'));
-console.log(score);
+let score = JSON.parse(localStorage.getItem('game-score')) || {
+    wins: 0,
+    losses: 0,
+    ties: 0
+};
+updateScore();
 
 // score tracker element
 const scoreElement = document.querySelector(".score-tracker");
@@ -15,6 +13,7 @@ function resetScore() {
     score.wins = 0;
     score.losses = 0;
     score.ties = 0;
+    localStorage.removeItem('game-score');
     updateScore();
 }
 // updationg score on every click
@@ -23,7 +22,7 @@ function updateScore() {
     scoreElement.innerHTML = `Wins: ${score.wins} ,Losses: ${score.losses} ,Ties: ${score.ties}`;
     // stringifying the score object to store it in the local storage
     // store the score in the local storage
-    localStorage.setItem("score", JSON.stringify(score));
+    localStorage.setItem("game-score", JSON.stringify(score));
 }
 // main function
 function rock_paper_scissors(uMove /*user move*/) {
