@@ -1,9 +1,9 @@
 // score tracker
-const score = JSON.parse(localStorage.getItem("score"));
+score = JSON.parse(localStorage.getItem("score"));
 // score tracker element
 const scoreElement = document.querySelector(".score-tracker");
 scoreElement.innerHTML = `Wins: ${score.wins} ,Losses: ${score.losses} ,Ties: ${score.ties}`;
-
+console.log(score);
 // resetting the score
 function resetScore() {
     score.wins = 0;
