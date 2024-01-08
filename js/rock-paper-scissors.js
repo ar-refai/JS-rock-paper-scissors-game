@@ -1,7 +1,7 @@
 // score tracker
 const score = JSON.parse(localStorage.getItem("score"));
 if (!localStorage.getItem('score'))
-    localStorage.setItem('score', { wins: 0, losses: 0 , ties: 0 });
+    localStorage.setItem('score', "{ wins: 0, losses: 0 , ties: 0 }");
 // score tracker element
 const scoreElement = document.querySelector(".score-tracker");
 scoreElement.innerHTML = `Wins: ${score.wins} ,Losses: ${score.losses} ,Ties: ${score.ties}`;
