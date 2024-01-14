@@ -16,14 +16,24 @@ function resetScore() {
     localStorage.removeItem('game-score');
     updateScore();
 }
+let isAutoPlaying = false;
+let intervalId;
 // auto playing
 function autoPlay() {
-    setInterval(function() {
-        const opponentMove = computer_move();
-        rock_paper_scissors(opponentMove)
-        updateScore();
+    if(!isAutoPlaying) {
+
+        intervalId = setInterval(function() {
+            const opponentMove = computer_move();
+            rock_paper_scissors(opponentMove)
+            updateScore();
+        }
+        ,1000);
+        isAutoPlaying = true;
     }
-    ,1000);
+    else {
+        clearInterval(intervalId);
+        isAutoPlaying = false;
+    }
 }
 // updationg score on every click
 function updateScore() {
