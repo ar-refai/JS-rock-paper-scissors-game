@@ -16,6 +16,15 @@ function resetScore() {
     localStorage.removeItem('game-score');
     updateScore();
 }
+// auto playing
+function autoPlay() {
+    setInterval(function() {
+        const opponentMove = computer_move();
+        rock_paper_scissors(opponentMove)
+        updateScore();
+    }
+    ,1000);
+}
 // updationg score on every click
 function updateScore() {
     const scoreElement = document.querySelector(".score-tracker");
@@ -75,22 +84,23 @@ function rock_paper_scissors(uMove /*user move*/) {
         cMoveElement.src = `images/${cMove}-emoji.png`;
     }
 
-    /*The Computer Move Function*/
-    function computer_move() {
-        /* Computer Move*/
-        const randNum = Math.random();
-        let cMove = "";
+}
 
-        if (randNum >= 0 && randNum < 1 / 3) {
-            // here computer choses rock
-            cMove = "rock";
-        } else if (randNum > 1 / 3 && randNum < 2 / 3) {
-            // here computer choses paper
-            cMove = "paper";
-        } else if (randNum > 2 / 3 && randNum < 1) {
-            // here computer choses scissors
-            cMove = "scissors";
-        }
-        return cMove;
+/*The Computer Move Function*/
+function computer_move() {
+    /* Computer Move*/
+    const randNum = Math.random();
+    let cMove = "";
+
+    if (randNum >= 0 && randNum < 1 / 3) {
+        // here computer choses rock
+        cMove = "rock";
+    } else if (randNum > 1 / 3 && randNum < 2 / 3) {
+        // here computer choses paper
+        cMove = "paper";
+    } else if (randNum > 2 / 3 && randNum < 1) {
+        // here computer choses scissors
+        cMove = "scissors";
     }
+    return cMove;
 }
